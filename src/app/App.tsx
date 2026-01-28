@@ -163,10 +163,10 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-6xl md:text-7xl tracking-tight mb-6">
-              Alex Chen
+              Swathi Saravanan
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">
-              Product designer and strategist building systems that scale. I work at the intersection of design, technology, and systems thinking.
+              Graduate Mechanical Engineering student at the University of Pennsylvania, exploring the intersection of product design, engineering, and entrepreneurship.
             </p>
             
             {/* Geometric accent element */}
@@ -199,7 +199,10 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-sm uppercase tracking-wider text-gray-500 mb-8">About</h2>
           <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 max-w-3xl">
-            I believe the best products emerge from deep systems thinking—understanding not just what users need today, but how those needs evolve as technology and context shift. My approach combines rigorous research, strategic product thinking, and hands-on design craft.
+            I started out building things—3D models, simulations, and systems rooted in first principles. Over time, I found myself less interested in building in isolation and more curious about what happens when these ideas meet the real world: users, markets, costs, and constraints. 
+          </p>
+          <p>
+            Lately, I’ve been focusing on developing a stronger business and strategy perspective. I like digging into products and industries where technical feasibility and commercial realities collide, and working through the tradeoffs that actually shape decisions.
           </p>
           <a 
             href="https://drive.google.com/file/d/example" 
@@ -344,7 +347,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-sm uppercase tracking-wider text-gray-500 mb-8">Side Quests</h2>
           <p className="text-xl text-gray-700 leading-relaxed mb-12 max-w-2xl">
-            Experiments, explorations, and ideas outside the main thread—from design tools to emerging tech prototypes.
+            When I’m not working toward my bigger goals, I spend time exploring smaller curiosities. This is where boundaries blur, ideas stay open-ended, and I give myself room to experiment. I think of these as the side quests that keep me learning.
           </p>
           
           <motion.div
@@ -352,9 +355,9 @@ export default function App() {
             className="relative overflow-hidden rounded-lg bg-gradient-to-br from-blue-50 to-gray-100 p-12 cursor-pointer group"
           >
             <div className="relative z-10">
-              <h3 className="mb-3">Explore Side Projects</h3>
+              <h3 className="mb-3">Here's a Record of Things I've found Interesting</h3>
               <p className="text-gray-600 mb-6">
-                Interactive experiments, design tools, and research prototypes
+                Engineering, Art, and Adventure
               </p>
               <div className="inline-flex items-center gap-2 text-blue-600 group-hover:gap-3 transition-all">
                 <span>View collection</span>
@@ -410,15 +413,15 @@ export default function App() {
           <h2 className="text-sm uppercase tracking-wider text-gray-500 mb-12">Get in Touch</h2>
           <div className="space-y-6">
             <a
-              href="mailto:alex.chen@example.com"
+              href="mailto:swathisarav@alumni.iitm.ac.in"
               className="flex items-center gap-4 text-xl hover:text-blue-600 transition-colors group"
             >
               <Mail className="w-6 h-6" />
-              <span>alex.chen@example.com</span>
+              <span>swathisarav@alumni.iitm.ac.in</span>
               <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
             </a>
             <a
-              href="https://linkedin.com/in/alexchen"
+              href="https://www.linkedin.com/in/swathi-saravanan-21b3a1233/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 text-xl hover:text-blue-600 transition-colors group"
@@ -428,7 +431,7 @@ export default function App() {
               <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
             </a>
             <a
-              href="https://github.com/alexchen"
+              href="https://github.com/swathisarav"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 text-xl hover:text-blue-600 transition-colors group"
@@ -444,7 +447,7 @@ export default function App() {
       {/* Footer */}
       <footer className="py-12 px-6 border-t border-gray-200">
         <div className="max-w-6xl mx-auto text-center text-gray-500 text-sm">
-          © 2026 Alex Chen. All rights reserved.
+          © 2026 Swathi Saravanan. All rights reserved.
         </div>
       </footer>
     </div>
