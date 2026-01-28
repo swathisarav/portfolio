@@ -317,7 +317,7 @@ export default function App() {
 
                           {project.links && project.links.length > 0 && (
                             <div>
-                              <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-4">Related Links</h4>
+                              <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-4">Tags & Links</h4>
                               <div className="flex flex-wrap gap-4">
                                 {project.links.map((link, index) => (
                                   <a
