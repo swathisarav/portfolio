@@ -16,73 +16,56 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Enterprise Design System',
-    summary: 'Building a scalable component library for a B2B SaaS platform serving 50K+ users',
-    tags: ['Product', 'Design', 'Systems'],
-    image: 'https://images.unsplash.com/photo-1769149068959-b11392164add?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc2OTQ3ODg2Mnww&ixlib=rb-4.1.0&q=80&w=1080',
-    detailedExplanation: 'Led the development of a comprehensive design system that reduced engineering time by 40% and improved cross-platform consistency. Created design tokens, component patterns, and documentation that scaled across web, mobile, and internal tools. Collaborated with 15+ engineers to establish governance processes and contribution workflows.',
+    title: 'Best Path for the Skiier',
+    summary: 'Designed a hierarchical hybrid NMPC controller for autonomous alpine skiing, integrating gliding, carving, and side-slipping within a unified optimization framework. Demonstrated safe, dynamically feasible downhill navigation with automatic mode switching and 100% obstacle avoidance in complex simulated mountain terrain.',
+    tags: ['Hierarchical Control', 'NMPC', 'Skiing'],
+    image: 'https://drive.google.com/file/d/1eji9WhXAp2jhMlwpFc6hwVkzRuPTNniW/view?usp=drive_link',
+    detailedExplanation: 'Developed a nonlinear model predictive control framework that jointly selects motion modes and continuous control inputs to navigate obstacle-rich, unstructured slopes. Implemented physics-based dynamic models for gliding, carving, and side-slipping, enabling speed regulation, sharp maneuvering, and stable descent under varying terrain conditions. Validated the controller in large-scale simulations (300×300 terrain grid) showing smooth trajectories, meaningful mode switching, and consistent target reachability. Analyzed numerical failure modes and proposed solver- and learning-based extensions to improve real-time feasibility and robustness.',
     links: [
-      { label: 'Case Study', url: '#' },
       { label: 'Documentation', url: '#' }
     ]
   },
   {
     id: 2,
-    title: 'AI-Powered Analytics Platform',
-    summary: 'Product strategy and UX for real-time data visualization serving enterprise clients',
+    title: 'Clear-Sync',
+    summary: 'Designed a human-centered digital workflow to coordinate inpatient room cleanings by aligning patient readiness, staff schedules, and environmental services constraints. Projected to reduce last-minute disruptions and manual coordination by ~20–30%, while improving patient preparedness and staff scheduling efficiency.',
     tags: ['Product', 'Strategy', 'Tech'],
-    image: 'https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwc3RyYXRlZ3klMjBkYXNoYm9hcmR8ZW58MXx8fHwxNzY5NTM3MTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    detailedExplanation: 'Defined product roadmap and designed interfaces for a platform processing 10M+ data points daily. Conducted stakeholder interviews across 8 enterprise clients to identify core workflows. Shipped v1 in 6 months with 95% feature adoption rate. Led integration of machine learning recommendations that increased user engagement by 60%.',
+    image: 'https://drive.google.com/file/d/1dVgzrFb9-khy4tE7fh8aQya04juEbdh4/view?usp=sharing',
+    detailedExplanation: "I took a course on Human Systems Engineering by Professor James Won at the Uniersity of Pennsylvania. As a part of the course we got to talk to professionals at the Children's Hospital of Philadelphia, to identify problems in their workflow and solve them. Applied human factors and sociotechnical systems thinking to analyze inpatient room-cleaning workflows involving patients, families, nurses, and environmental services teams. Identified communication breakdowns and cognitive load drivers through interviews, surveys, and workflow mapping across U.S. and international hospital contexts. Designed a centralized digital calendar and notification system that automates scheduling, preparation tasks, and real-time status updates across stakeholders. Projected to cut ad-hoc coordination, rescheduling, and room-preparation delays by approximately 20–30%, while improving patient comfort, predictability, and operational clarity.",
     links: [
-      { label: 'Product Overview', url: '#' }
     ]
   },
   {
     id: 3,
-    title: 'Mobile Health Companion',
-    summary: 'End-to-end design for a consumer health tracking app with 500K+ downloads',
-    tags: ['Product', 'Design', 'Research'],
-    image: 'https://images.unsplash.com/photo-1748801583975-720cb5e4985e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBwcm90b3R5cGV8ZW58MXx8fHwxNzY5NTIzMDg5fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    detailedExplanation: 'Owned the complete product experience from concept to launch. Conducted 40+ user interviews and usability tests to validate core hypotheses. Designed an adaptive interface that personalizes to user behavior patterns. Collaborated with clinical advisors to ensure medical accuracy. Achieved 4.8 App Store rating and sustained 30% monthly active user retention.',
+    title: 'A Die for Dice',
+    summary: 'Designed a production-ready injection mold for a 1.5 cm playing die, accounting for draft angles, shrinkage allowances, and manufacturability constraints. Enabled repeatable, high-volume production with minimal post-processing and dimensional consistency suitable for consumer-grade manufacturing.',
+    tags: ['Manufacturing', 'Injection Molding', 'Dice'],
+    image: 'https://drive.google.com/file/d/1gEpTWvxpf8lzvNb9OCvD1ynaWHj0a6uU/view?usp=sharing',
+    detailedExplanation: 'Designed a single-part injection-molded playing die in ABS, incorporating appropriate draft angles and shrinkage compensation to ensure clean ejection and dimensional accuracy. Applied standard ABS shrinkage allowances (~0.6%) and optimized wall geometry to reduce sink marks and tooling wear. The mold design supports fast cycle times, low reject rates, and consistent face geometry across large production runs. At scale, the design enables thousands of identical parts per day with near-zero secondary finishing, reducing per-unit cost and manufacturing variability.',
     links: [
-      { label: 'App Store', url: '#' },
-      { label: 'Research Insights', url: '#' }
     ]
   },
   {
     id: 4,
-    title: 'Platform Infrastructure Redesign',
-    summary: 'Systems thinking approach to rebuilding developer tools and internal workflows',
-    tags: ['Systems', 'Strategy', 'Tech'],
-    image: 'https://images.unsplash.com/photo-1721244653657-ad6b91780492?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGF0Zm9ybSUyMGFyY2hpdGVjdHVyZSUyMGRpYWdyYW18ZW58MXx8fHwxNzY5NTM3MTQ1fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    detailedExplanation: 'Architected a developer experience overhaul affecting 200+ internal users. Mapped complex system dependencies and identified bottlenecks causing 15+ hours of weekly friction. Designed modular tooling that reduced onboarding time from 2 weeks to 3 days. Created visual documentation standards that became company-wide practice.',
+    title: 'Thick Morph',
+    summary: 'Designed a manufacturable thick-origami mechanism that enables mountain–valley switching while preserving kinematic feasibility under real material thickness. Bridged theoretical origami mechanics and production constraints, contributing design rules validated through peer review and international presentation.',
+    tags: ['Origami Engineering', 'DH ANalysis', 'CNC Machining'],
+    image: 'https://drive.google.com/file/d/1ld5lNQ5eOa-BE_RpvWMr4GLbx5qO4T-z/view?usp=sharing',
+    detailedExplanation: 'Selected as a Young Research Fellow at IIT Madras, under the guidance of Professor Phanisri Pradeep Pratapa I led the end-to-end design of a thick-origami structure that accommodates material thickness without sacrificing motion or foldability. Developed and validated geometric strategies for mountain–valley switching, translating abstract origami theory into practical, manufacturable design guidelines. The work culminated in a peer-reviewed paper submission to Mechanisms and Machine Theory and an international conference presentation at the MMT Symposium. The project demonstrates rigorous systems thinking across kinematics, fabrication constraints, and real-world deployability of morphing structures.',
     links: [
-      { label: 'Technical Overview', url: '#' }
     ]
   },
   {
     id: 5,
-    title: 'Voice-First Research Study',
-    summary: 'Exploratory research into conversational interfaces and multi-modal interaction',
+    title: 'GTM For Tavus',
+    summary: 'Exploratory strategy  into conversational interfaces and multi-modal interaction',
     tags: ['Research', 'Design', 'Tech'],
     image: 'https://images.unsplash.com/photo-1723987251277-18fc0a1effd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1c2VyJTIwcmVzZWFyY2glMjBhbmFseXNpc3xlbnwxfHx8fDE3Njk1MzcxNDV8MA&ixlib=rb-4.1.0&q=80&w=1080',
     detailedExplanation: 'Led foundational research into emerging interaction models for voice + visual interfaces. Designed and conducted mixed-method studies with 60+ participants. Synthesized findings into actionable design principles and prototypes. Presented insights to executive team, influencing strategic product decisions for next 18 months.',
     links: [
-      { label: 'Research Report', url: '#' },
-      { label: 'Prototype Demo', url: '#' }
-    ]
-  },
-  {
-    id: 6,
-    title: 'Zero-to-One Marketplace MVP',
-    summary: 'Product design and go-to-market strategy for a two-sided marketplace startup',
-    tags: ['Product', 'Strategy', 'Design'],
-    image: 'https://images.unsplash.com/photo-1750056393326-8feed2a1c34f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9kdWN0JTIwZGVzaWduJTIwaW50ZXJmYWNlJTIwbW9ja3VwfGVufDF8fHx8MTc2OTUzNzE0M3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    detailedExplanation: 'Shaped product strategy for early-stage startup, defining MVP scope and phasing plan. Designed core transaction flows balancing supply and demand dynamics. Established key metrics and instrumentation strategy. Led user testing with both buyer and seller segments. Launched with 200 active users in first month, achieving 40% week-over-week growth.',
-    links: [
-      { label: 'Product Demo', url: '#' }
     ]
   }
+
 ];
 
 export default function App() {
@@ -199,9 +182,9 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-sm uppercase tracking-wider text-gray-500 mb-8">About</h2>
           <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 max-w-3xl">
-            I started out building things—3D models, simulations, and systems rooted in first principles. Over time, I found myself less interested in building in isolation and more curious about what happens when these ideas meet the real world: users, markets, costs, and constraints. 
+            I started out building things - 3D models, simulations, and systems rooted in first principles. I honed my building skills through reasearch as an undergrad at IIT Madras and through several hobby-projects. Over time, I found myself less interested in building in isolation and more curious about what happens when these ideas meet the real world: users, markets, costs, and constraints. 
           </p>
-          <p>
+          <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 max-w-3xl">
             Lately, I’ve been focusing on developing a stronger business and strategy perspective. I like digging into products and industries where technical feasibility and commercial realities collide, and working through the tradeoffs that actually shape decisions.
           </p>
           <a 
