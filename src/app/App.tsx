@@ -26,7 +26,6 @@ const projects: Project[] = [
     image: skiitrajectoryImg,
     detailedExplanation: 'Developed a nonlinear model predictive control framework that jointly selects motion modes and continuous control inputs to navigate obstacle-rich, unstructured slopes. Implemented physics-based dynamic models for gliding, carving, and side-slipping, enabling speed regulation, sharp maneuvering, and stable descent under varying terrain conditions. Validated the controller in large-scale simulations (300×300 terrain grid) showing smooth trajectories, meaningful mode switching, and consistent target reachability. Analyzed numerical failure modes and proposed solver- and learning-based extensions to improve real-time feasibility and robustness.',
     links: [
-      { label: 'Documentation', url: '#' }
     ]
   },
   {
@@ -62,11 +61,12 @@ const projects: Project[] = [
   {
     id: 5,
     title: 'GTM For Tavus',
-    summary: 'Exploratory strategy  into conversational interfaces and multi-modal interaction',
-    tags: ['Research', 'Design', 'Tech'],
+    summary: 'Designed a focused go-to-market strategy to drive first-time adoption of Tavus among U.S. product managers by minimizing time-to-value and experimentation friction. Structured to convert awareness → trial through one-click demos, clear CTAs, and community-driven distribution within a <$30k budget.',
+    tags: ['GTM', 'Product-Led Growth', 'B2B SaaS'],
     image: 'https://images.unsplash.com/photo-1723987251277-18fc0a1effd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1c2VyJTIwcmVzZWFyY2glMjBhbmFseXNpc3xlbnwxfHx8fDE3Njk1MzcxNDV8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    detailedExplanation: 'Led foundational research into emerging interaction models for voice + visual interfaces. Designed and conducted mixed-method studies with 60+ participants. Synthesized findings into actionable design principles and prototypes. Presented insights to executive team, influencing strategic product decisions for next 18 months.',
+    detailedExplanation: 'Developed an end-to-end GTM plan targeting ~45,000 core U.S. product managers, grounded in how PMs actually discover and evaluate new tools—through peers, communities, and lightweight experimentation. Identified key adoption blockers (unclear value, tool fatigue, high setup effort) and redesigned the funnel around zero-install demos, persona sharing, and highly visible CTAs. Proposed a phased rollout across PM forums, newsletters, and showcases, paired with automated follow-ups and measurable activation metrics. The strategy aims to significantly improve trial activation and sharing rates, while keeping CAC low and enabling fast signal-gathering within the first 3–6 weeks.',
     links: [
+      { label: 'Documentation', url: 'https://drive.google.com/file/d/1S_tHFYCH3onzXuQmCcPVvIPZFAaOUKN_/view?usp=sharing' }
     ]
   }
 
