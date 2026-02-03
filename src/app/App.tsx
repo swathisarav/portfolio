@@ -20,36 +20,6 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: 1,
-    title: 'Best Path for the Skiier',
-    summary: 'Designed a hierarchical hybrid NMPC controller for autonomous alpine skiing, integrating gliding, carving, and side-slipping within a unified optimization framework. Demonstrated safe, dynamically feasible downhill navigation with automatic mode switching and 100% obstacle avoidance in complex simulated mountain terrain.',
-    tags: ['Hierarchical Control', 'NMPC', 'Skiing'],
-    image: skiitrajectoryImg,
-    detailedExplanation: 'Developed a nonlinear model predictive control framework that jointly selects motion modes and continuous control inputs to navigate obstacle-rich, unstructured slopes. Implemented physics-based dynamic models for gliding, carving, and side-slipping, enabling speed regulation, sharp maneuvering, and stable descent under varying terrain conditions. Validated the controller in large-scale simulations (300×300 terrain grid) showing smooth trajectories, meaningful mode switching, and consistent target reachability. Analyzed numerical failure modes and proposed solver- and learning-based extensions to improve real-time feasibility and robustness.',
-    links: [
-    ]
-  },
-  {
-    id: 2,
-    title: 'Clear-Sync',
-    summary: 'Designed a human-centered digital workflow to coordinate inpatient room cleanings by aligning patient readiness, staff schedules, and environmental services constraints. Projected to reduce last-minute disruptions and manual coordination by ~20–30%, while improving patient preparedness and staff scheduling efficiency.',
-    tags: ['Product', 'Strategy', 'Tech'],
-    image: clearsyncImg,
-    detailedExplanation: "I took a course on Human Systems Engineering by Professor James Won at the Uniersity of Pennsylvania. As a part of the course we got to talk to professionals at the Children's Hospital of Philadelphia, to identify problems in their workflow and solve them. Applied human factors and sociotechnical systems thinking to analyze inpatient room-cleaning workflows involving patients, families, nurses, and environmental services teams. Identified communication breakdowns and cognitive load drivers through interviews, surveys, and workflow mapping across U.S. and international hospital contexts. Designed a centralized digital calendar and notification system that automates scheduling, preparation tasks, and real-time status updates across stakeholders. Projected to cut ad-hoc coordination, rescheduling, and room-preparation delays by approximately 20–30%, while improving patient comfort, predictability, and operational clarity.",
-    links: [
-    ]
-  },
-  {
-    id: 3,
-    title: 'A Die for Dice',
-    summary: 'Designed a production-ready injection mold for a 1.5 cm playing die, accounting for draft angles, shrinkage allowances, and manufacturability constraints. Enabled repeatable, high-volume production with minimal post-processing and dimensional consistency suitable for consumer-grade manufacturing.',
-    tags: ['Manufacturing', 'Injection Molding', 'Dice'],
-    image: diefordiceImg,
-    detailedExplanation: 'Designed a single-part injection-molded playing die in ABS, incorporating appropriate draft angles and shrinkage compensation to ensure clean ejection and dimensional accuracy. Applied standard ABS shrinkage allowances (~0.6%) and optimized wall geometry to reduce sink marks and tooling wear. The mold design supports fast cycle times, low reject rates, and consistent face geometry across large production runs. At scale, the design enables thousands of identical parts per day with near-zero secondary finishing, reducing per-unit cost and manufacturing variability.',
-    links: [
-    ]
-  },
-  {
     id: 4,
     title: 'Thick Morph',
     summary: 'Designed a manufacturable thick-origami mechanism that enables mountain–valley switching while preserving kinematic feasibility under real material thickness. Bridged theoretical origami mechanics and production constraints, contributing design rules validated through peer review and international presentation.',
@@ -69,8 +39,37 @@ const projects: Project[] = [
     links: [
       { label: 'Documentation', url: 'https://drive.google.com/file/d/1S_tHFYCH3onzXuQmCcPVvIPZFAaOUKN_/view?usp=sharing' }
     ]
+  },
+  {
+    id: 3,
+    title: 'A Die for Dice',
+    summary: 'Designed a production-ready injection mold for a 1.5 cm playing die, accounting for draft angles, shrinkage allowances, and manufacturability constraints. Enabled repeatable, high-volume production with minimal post-processing and dimensional consistency suitable for consumer-grade manufacturing.',
+    tags: ['Manufacturing', 'Injection Molding', 'Dice'],
+    image: diefordiceImg,
+    detailedExplanation: 'Designed a single-part injection-molded playing die in ABS, incorporating appropriate draft angles and shrinkage compensation to ensure clean ejection and dimensional accuracy. Applied standard ABS shrinkage allowances (~0.6%) and optimized wall geometry to reduce sink marks and tooling wear. The mold design supports fast cycle times, low reject rates, and consistent face geometry across large production runs. At scale, the design enables thousands of identical parts per day with near-zero secondary finishing, reducing per-unit cost and manufacturing variability.',
+    links: [
+    ]
+  },
+  {
+    id: 1,
+    title: 'Best Path for the Skiier',
+    summary: 'Designed a hierarchical hybrid NMPC controller for autonomous alpine skiing, integrating gliding, carving, and side-slipping within a unified optimization framework. Demonstrated safe, dynamically feasible downhill navigation with automatic mode switching and 100% obstacle avoidance in complex simulated mountain terrain.',
+    tags: ['Hierarchical Control', 'NMPC', 'Skiing'],
+    image: skiitrajectoryImg,
+    detailedExplanation: 'Developed a nonlinear model predictive control framework that jointly selects motion modes and continuous control inputs to navigate obstacle-rich, unstructured slopes. Implemented physics-based dynamic models for gliding, carving, and side-slipping, enabling speed regulation, sharp maneuvering, and stable descent under varying terrain conditions. Validated the controller in large-scale simulations (300×300 terrain grid) showing smooth trajectories, meaningful mode switching, and consistent target reachability. Analyzed numerical failure modes and proposed solver- and learning-based extensions to improve real-time feasibility and robustness.',
+    links: [
+    ]
+  },
+  {
+    id: 2,
+    title: 'Clear-Sync',
+    summary: 'Designed a human-centered digital workflow to coordinate inpatient room cleanings by aligning patient readiness, staff schedules, and environmental services constraints. Projected to reduce last-minute disruptions and manual coordination by ~20–30%, while improving patient preparedness and staff scheduling efficiency.',
+    tags: ['Product', 'Strategy', 'Tech'],
+    image: clearsyncImg,
+    detailedExplanation: "I took a course on Human Systems Engineering by Professor James Won at the Uniersity of Pennsylvania. As a part of the course we got to talk to professionals at the Children's Hospital of Philadelphia, to identify problems in their workflow and solve them. Applied human factors and sociotechnical systems thinking to analyze inpatient room-cleaning workflows involving patients, families, nurses, and environmental services teams. Identified communication breakdowns and cognitive load drivers through interviews, surveys, and workflow mapping across U.S. and international hospital contexts. Designed a centralized digital calendar and notification system that automates scheduling, preparation tasks, and real-time status updates across stakeholders. Projected to cut ad-hoc coordination, rescheduling, and room-preparation delays by approximately 20–30%, while improving patient comfort, predictability, and operational clarity.",
+    links: [
+    ]
   }
-
 ];
 
 export default function App() {
