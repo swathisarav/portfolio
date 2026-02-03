@@ -5,6 +5,7 @@ import clearsyncImg from "./assets/clearsync.png";
 import diefordiceImg from "./assets/diefordice.png";
 import thickmorphImg from "./assets/ThickMorph.png";
 import skiitrajectoryImg from "./assets/skiitrajectory.png";
+import tavusImg from "./assets/tavus.png";
 
 interface Project {
   id: number;
@@ -63,7 +64,7 @@ const projects: Project[] = [
     title: 'GTM For Tavus',
     summary: 'Designed a focused go-to-market strategy to drive first-time adoption of Tavus among U.S. product managers by minimizing time-to-value and experimentation friction. Structured to convert awareness → trial through one-click demos, clear CTAs, and community-driven distribution within a <$30k budget.',
     tags: ['GTM', 'Product-Led Growth', 'B2B SaaS'],
-    image: 'https://images.unsplash.com/photo-1723987251277-18fc0a1effd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1c2VyJTIwcmVzZWFyY2glMjBhbmFseXNpc3xlbnwxfHx8fDE3Njk1MzcxNDV8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: tavusImg,
     detailedExplanation: 'Developed an end-to-end GTM plan targeting ~45,000 core U.S. product managers, grounded in how PMs actually discover and evaluate new tools—through peers, communities, and lightweight experimentation. Identified key adoption blockers (unclear value, tool fatigue, high setup effort) and redesigned the funnel around zero-install demos, persona sharing, and highly visible CTAs. Proposed a phased rollout across PM forums, newsletters, and showcases, paired with automated follow-ups and measurable activation metrics. The strategy aims to significantly improve trial activation and sharing rates, while keeping CAC low and enabling fast signal-gathering within the first 3–6 weeks.',
     links: [
       { label: 'Documentation', url: 'https://drive.google.com/file/d/1S_tHFYCH3onzXuQmCcPVvIPZFAaOUKN_/view?usp=sharing' }
@@ -346,7 +347,7 @@ export default function App() {
               <p className="text-gray-600 mb-6">
                 Adventure, Art, Music, Musings, Ideas and Explorations.
               </p>
-              <a href="hhttps://swathisarav.github.io/sidequests/" target="_blank" rel="noopener noreferrer">
+              <a href="https://swathisarav.github.io/sidequests/" target="_blank" rel="noopener noreferrer">
                 <div className="inline-flex items-center gap-2 text-blue-600 group-hover:gap-3 transition-all">
                   <span>View collection</span>
                   <ArrowUpRight className="w-5 h-5" />
@@ -368,6 +369,7 @@ export default function App() {
                   whileInView={{ pathLength: 1 }}
                   transition={{ duration: 2, ease: "easeInOut" }}
                 />
+                
                 <motion.line
                   x1="20"
                   y1="100"
