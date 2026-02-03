@@ -334,7 +334,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-sm uppercase tracking-wider text-gray-500 mb-8">Side Quests</h2>
           <p className="text-xl text-gray-700 leading-relaxed mb-12 max-w-2xl">
-            When I’m not working toward my bigger goals, I spend time exploring smaller curiosities. This is where boundaries blur, ideas stay open-ended, and I give myself room to experiment. I think of these as the side quests that keep me learning.
+            When I’m not working toward my bigger goals, I spend time exploring smaller curiosities. This is where boundaries blur, ideas stay open-ended, and I give myself room to experiment. I think of these as the side quests in the game of life.
           </p>
           
           <motion.div
@@ -342,14 +342,16 @@ export default function App() {
             className="relative overflow-hidden rounded-lg bg-gradient-to-br from-blue-50 to-gray-100 p-12 cursor-pointer group"
           >
             <div className="relative z-10">
-              <h3 className="mb-3">Here's a Record of Things I've found Interesting</h3>
+              <h3 className="mb-3">Here's my personal blog.</h3>
               <p className="text-gray-600 mb-6">
-                Engineering, Art, and Adventure
+                Adventure, Art, Music, Musings, Ideas and Explorations.
               </p>
-              <div className="inline-flex items-center gap-2 text-blue-600 group-hover:gap-3 transition-all">
-                <span>View collection</span>
-                <ArrowUpRight className="w-5 h-5" />
-              </div>
+              <a href="hhttps://swathisarav.github.io/sidequests/" target="_blank" rel="noopener noreferrer">
+                <div className="inline-flex items-center gap-2 text-blue-600 group-hover:gap-3 transition-all">
+                  <span>View collection</span>
+                  <ArrowUpRight className="w-5 h-5" />
+                </div>
+              </a>
             </div>
             
             {/* Decorative geometric element */}
