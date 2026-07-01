@@ -191,15 +191,16 @@ export default function App() {
           <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8 max-w-3xl">
             Lately, I’ve been focusing on developing a stronger business and strategy perspective. I like digging into products and industries where technical feasibility and commercial realities collide, and working through the tradeoffs that actually shape decisions.
           </p>
+          {/*
           <a 
             href="https://drive.google.com/file/d/example" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors group"
           >
-            <span>View Resume</span>
+             <span>View Resume</span> 
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
+          </a> */}
         </div>
       </section>
 
@@ -342,7 +343,7 @@ export default function App() {
             className="relative overflow-hidden rounded-lg bg-gradient-to-br from-blue-50 to-gray-100 p-12 cursor-pointer group"
           >
             <div className="relative z-10">
-              <h3 className="mb-3">Here's my personal blog.</h3>
+              <h3 className="mb-3">Find my Sidequests here.</h3>
               <p className="text-gray-600 mb-6">
                 Adventure, Art, Music, Musings, Ideas and Explorations.
               </p>
