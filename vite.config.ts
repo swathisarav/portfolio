@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  // Vercel serves from the root; GitHub Pages serves from /portfolio/
-  base: process.env.VERCEL ? '/' : '/portfolio/',
+  base: '/portfolio/', // served by GitHub Pages at /portfolio/
   plugins: [
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them
