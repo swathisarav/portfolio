@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowUpRight, Github, Linkedin, Mail, Lock } from 'lucide-react';
+import { X, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Gate } from './components/Gate';
+import { BoatShape } from './components/Boat';
 import { DioramaSection } from './diorama/DioramaSection';
 import { WaveMark } from './components/WaveMark';
 import { SectionTitle } from './components/SectionTitle';
@@ -76,6 +77,9 @@ const projects: Project[] = [
   }
 ];
 
+/** Length of the little boat in the nav bar (it points up, so this is its height there). */
+const NAV_BOAT_W = 30;
+
 export default function App() {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState('');
@@ -96,7 +100,7 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'projects', 'explore', 'side-quests', 'contact'];
+      const sections = ['about', 'projects', 'explore', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -143,24 +147,37 @@ export default function App() {
               <span className="font-display text-xl tracking-tight text-ink">Swathi</span>
             </button>
             <div className="flex items-center gap-8">
-              {['about', 'projects', 'explore', 'side-quests', 'contact'].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className={`capitalize text-base font-medium transition-colors border-b-2 pb-1 ${
-                    activeSection === section ? 'text-ink border-sea' : 'text-ink-soft border-transparent hover:text-ink'
-                  }`}
-                >
-                  {section === 'side-quests' ? 'Side Quests' : section}
-                </button>
-              ))}
+              {['about', 'projects', 'explore', 'side-quests', 'contact'].map((section) =>
+                section === 'side-quests' ? (
+                  // goes straight to the Sidequests site
+                  <a
+                    key={section}
+                    href="https://swathisarav.github.io/sidequests/"
+                    className="text-base font-medium transition-colors border-b-2 pb-1 text-sea border-transparent hover:text-sea-deep"
+                  >
+                    Side Quests
+                  </a>
+                ) : (
+                  <button
+                    key={section}
+                    onClick={() => scrollToSection(section)}
+                    className={`capitalize text-base font-medium transition-colors border-b-2 pb-1 ${
+                      activeSection === section ? 'text-ink border-sea' : 'text-ink-soft border-transparent hover:text-ink'
+                    }`}
+                  >
+                    {section}
+                  </button>
+                )
+              )}
               <button
                 onClick={relock}
-                title="Lock the site again"
-                aria-label="Lock the site again"
-                className="text-ink-faint hover:text-sea transition-colors"
+                title="Back to the beach"
+                aria-label="Back to the beach"
+                className="flex h-8 w-12 items-center justify-center drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-0.5 hover:scale-110"
               >
-                <Lock className="w-4 h-4" />
+                <span className="block rotate-90">
+                  <BoatShape width={NAV_BOAT_W} shadow={false} outline="#3E4644" />
+                </span>
               </button>
             </div>
           </div>
@@ -319,41 +336,10 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Side Quests Section */}
-      <section id="side-quests" className="py-32 px-6 border-t border-line">
-        <div className="max-w-6xl mx-auto">
-          <SectionTitle n="04" title="Side Quests" />
-          <p className="text-xl md:text-2xl text-ink-soft leading-relaxed mb-12 max-w-3xl">
-            When I’m not working toward my bigger goals, I spend time exploring smaller curiosities. This is where boundaries blur, ideas stay open-ended, and I give myself room to experiment. I think of these as the side quests in the game of life.
-          </p>
-          
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="relative overflow-hidden rounded-xl border border-line bg-surface p-12 cursor-pointer group hover:border-sea/60 transition-colors"
-          >
-            <div className="relative z-10">
-              <h3 className="mb-3 font-display text-3xl text-ink">Find my Sidequests here.</h3>
-              <p className="text-lg text-ink-soft mb-6">
-                Adventure, Art, Music, Musings, Ideas and Explorations.
-              </p>
-              <a href="https://swathisarav.github.io/sidequests/" target="_blank" rel="noopener noreferrer">
-                <div className="inline-flex items-center gap-2 text-lg text-sea group-hover:gap-3 transition-all">
-                  <span>View collection</span>
-                  <ArrowUpRight className="w-5 h-5" />
-                </div>
-              </a>
-            </div>
-            
-            {/* The Sidequests wave, a quiet link between the two sites */}
-            <WaveMark className="pointer-events-none absolute -right-6 -bottom-4 w-80 h-auto text-sea opacity-20 transition-opacity duration-500 group-hover:opacity-40" />
-          </motion.div>
-        </div>
-      </section>
-
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 bg-paper-2 border-t border-line">
+      <section id="contact" className="relative overflow-hidden py-32 px-6 bg-paper-2 border-t border-line">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle n="05" title="Get in Touch" />
+          <SectionTitle n="04" title="Get in Touch" />
           <div className="space-y-6">
             <a
               href="mailto:swathisarav@alumni.iitm.ac.in"
@@ -385,6 +371,8 @@ export default function App() {
             </a>
           </div>
         </div>
+        {/* the Sidequests wave, a quiet link between the two sites */}
+        <WaveMark className="pointer-events-none absolute -right-8 bottom-6 w-[26rem] max-w-[70vw] h-auto text-sea opacity-15" />
       </section>
 
       {/* Footer */}
