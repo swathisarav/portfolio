@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowUpRight, Github, Linkedin, Mail, Lock } from 'lucide-react';
 import { Gate } from './components/Gate';
 import { DioramaSection } from './diorama/DioramaSection';
+import { WaveMark } from './components/WaveMark';
+import { SectionTitle } from './components/SectionTitle';
 import clearsyncImg from "./assets/clearsync.png";
 import diefordiceImg from "./assets/diefordice.png";
 import thickmorphImg from "./assets/ThickMorph.png";
@@ -94,7 +96,7 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'about', 'projects', 'explore', 'side-quests', 'contact'];
+      const sections = ['about', 'projects', 'explore', 'side-quests', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -129,26 +131,24 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-cream text-navy">
+    <div className="min-h-screen bg-paper text-ink">
       <AnimatePresence>{!unlocked && <Gate onUnlock={unlock} />}</AnimatePresence>
 
       {/* Sticky Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-cream/85 backdrop-blur-md border-b border-navy/10">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-paper/80 backdrop-blur-md border-b border-line">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <button 
-              onClick={() => scrollToSection('hero')}
-              className="tracking-tight hover:text-teal transition-colors"
-            >
-              Portfolio
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="group flex items-center gap-2 text-left">
+              <WaveMark className="h-6 w-auto text-sea transition-transform duration-500 group-hover:-translate-x-0.5 group-hover:scale-110" />
+              <span className="font-display text-xl tracking-tight text-ink">Swathi</span>
             </button>
             <div className="flex items-center gap-8">
               {['about', 'projects', 'explore', 'side-quests', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`capitalize tracking-tight transition-colors ${
-                    activeSection === section ? 'text-navy' : 'text-teal hover:text-navy'
+                  className={`capitalize text-base font-medium transition-colors border-b-2 pb-1 ${
+                    activeSection === section ? 'text-ink border-sea' : 'text-ink-soft border-transparent hover:text-ink'
                   }`}
                 >
                   {section === 'side-quests' ? 'Side Quests' : section}
@@ -158,7 +158,7 @@ export default function App() {
                 onClick={relock}
                 title="Lock the site again"
                 aria-label="Lock the site again"
-                className="text-teal/70 hover:text-teal transition-colors"
+                className="text-ink-faint hover:text-sea transition-colors"
               >
                 <Lock className="w-4 h-4" />
               </button>
@@ -167,54 +167,14 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center px-6 pt-20">
-        <div className="max-w-4xl w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-6xl md:text-7xl tracking-tight mb-6">
-              Swathi Saravanan
-            </h1>
-            <p className="text-xl md:text-2xl text-navy/70 max-w-2xl leading-relaxed">
-              I love creating things, and I love it even more when they’re useful to people. I’m currently a graduate student at the University of Pennsylvania.
-            </p>
-            
-            {/* Geometric accent element */}
-            <div className="mt-16 flex gap-2">
-              <motion.div 
-                className="h-1 bg-navy"
-                initial={{ width: 0 }}
-                animate={{ width: 80 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              />
-              <motion.div 
-                className="h-1 bg-gold"
-                initial={{ width: 0 }}
-                animate={{ width: 40 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              />
-              <motion.div 
-                className="h-1 bg-teal"
-                initial={{ width: 0 }}
-                animate={{ width: 20 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* About Section */}
-      <section id="about" className="py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-sm uppercase tracking-wider text-teal mb-8">About</h2>
-          <p className="text-xl md:text-2xl text-navy/80 leading-relaxed mb-8 max-w-3xl">
+      <section id="about" className="pt-36 pb-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle n="01" title="About" />
+          <p className="text-xl md:text-2xl text-ink-soft leading-relaxed mb-8 max-w-3xl">
             I started out building things - 3D models, simulations, and systems rooted in first principles. I honed my building skills through research as an undergrad at IIT Madras and through several hobby-projects. Over time, I found myself less interested in building in isolation and more curious about what happens when these ideas meet the real world: users, markets, costs, and constraints. 
           </p>
-          <p className="text-xl md:text-2xl text-navy/80 leading-relaxed mb-8 max-w-3xl">
+          <p className="text-xl md:text-2xl text-ink-soft leading-relaxed mb-8 max-w-3xl">
             Lately, I’ve been focusing on developing a stronger business and strategy perspective. I like digging into products and industries where technical feasibility and commercial realities collide, and working through the tradeoffs that actually shape decisions.
           </p>
           {/*
@@ -222,7 +182,7 @@ export default function App() {
             href="https://drive.google.com/file/d/example" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-teal hover:text-navy transition-colors group"
+            className="inline-flex items-center gap-2 text-lg text-sea hover:text-ink transition-colors group"
           >
              <span>View Resume</span> 
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -231,18 +191,18 @@ export default function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-32 px-6 bg-aqua/30">
+      <section id="projects" className="py-32 px-6 bg-paper-2 border-t border-line">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-sm uppercase tracking-wider text-teal mb-12">Selected Work</h2>
+          <SectionTitle n="02" title="Selected Work" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project) => (
               <motion.div
                 key={project.id}
                 layoutId={`project-${project.id}`}
                 onClick={() => setExpandedProject(project.id)}
-                className="bg-white rounded-lg overflow-hidden cursor-pointer group hover:shadow-lg transition-shadow"
+                className="bg-surface border border-line rounded-xl overflow-hidden cursor-pointer group hover:border-sea/60 transition-colors"
               >
-                <div className="aspect-[16/10] overflow-hidden bg-aqua/50">
+                <div className="aspect-[16/10] overflow-hidden bg-paper-2">
                   <motion.img
                     layoutId={`project-image-${project.id}`}
                     src={project.image}
@@ -250,18 +210,18 @@ export default function App() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="p-6">
-                  <motion.h3 layoutId={`project-title-${project.id}`} className="mb-2">
+                <div className="p-7">
+                  <motion.h3 layoutId={`project-title-${project.id}`} className="mb-3 font-display text-2xl text-ink">
                     {project.title}
                   </motion.h3>
-                  <motion.p layoutId={`project-summary-${project.id}`} className="text-navy/70 mb-4 leading-relaxed">
+                  <motion.p layoutId={`project-summary-${project.id}`} className="text-lg text-ink-soft mb-5 leading-relaxed">
                     {project.summary}
                   </motion.p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-x-4 gap-y-1">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 bg-aqua/50 text-navy/80 rounded-full text-sm"
+                        className="text-sm font-semibold uppercase tracking-[0.12em] text-sea"
                       >
                         {tag}
                       </span>
@@ -287,7 +247,7 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setExpandedProject(null)}
-              className="fixed inset-0 bg-navy/70 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50"
             />
             
             {/* Expanded Card */}
@@ -295,12 +255,12 @@ export default function App() {
               <div className="min-h-screen px-4 py-20 flex items-center justify-center">
                 <motion.div
                   layoutId={`project-${expandedProject}`}
-                  className="bg-white rounded-lg overflow-hidden max-w-4xl w-full relative"
+                  className="bg-surface border border-line rounded-xl overflow-hidden max-w-4xl w-full relative"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <button
                     onClick={() => setExpandedProject(null)}
-                    className="absolute top-4 right-4 z-10 p-2 bg-white rounded-full shadow-lg hover:bg-aqua/40 transition-colors"
+                    className="absolute top-4 right-4 z-10 p-2 bg-paper-2 text-ink rounded-full border border-line hover:bg-sea/30 transition-colors"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -309,7 +269,7 @@ export default function App() {
                     .filter((p) => p.id === expandedProject)
                     .map((project) => (
                       <div key={project.id}>
-                        <div className="aspect-[16/9] overflow-hidden bg-aqua/50">
+                        <div className="aspect-[16/9] overflow-hidden bg-paper-2">
                           <motion.img
                             layoutId={`project-image-${project.id}`}
                             src={project.image}
@@ -318,29 +278,29 @@ export default function App() {
                           />
                         </div>
                         <div className="p-8 md:p-12">
-                          <motion.h3 layoutId={`project-title-${project.id}`} className="mb-4">
+                          <motion.h3 layoutId={`project-title-${project.id}`} className="mb-4 font-display text-3xl text-ink">
                             {project.title}
                           </motion.h3>
-                          <motion.p layoutId={`project-summary-${project.id}`} className="text-navy/70 mb-6 leading-relaxed">
+                          <motion.p layoutId={`project-summary-${project.id}`} className="text-lg text-ink-soft mb-6 leading-relaxed">
                             {project.summary}
                           </motion.p>
                           
                           <div className="mb-8">
-                            <h4 className="text-sm uppercase tracking-wider text-teal mb-4">Details</h4>
-                            <p className="text-navy/80 leading-relaxed">
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-sea mb-4">Details</h4>
+                            <p className="text-lg text-ink-soft leading-relaxed">
                               {project.detailedExplanation}
                             </p>
                           </div>
 
                           {project.links && project.links.length > 0 && (
                             <div>
-                              <h4 className="text-sm uppercase tracking-wider text-teal mb-4">Tags & Links</h4>
+                              <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-sea mb-4">Tags & Links</h4>
                               <div className="flex flex-wrap gap-4">
                                 {project.links.map((link, index) => (
                                   <a
                                     key={index}
                                     href={link.url}
-                                    className="inline-flex items-center gap-2 text-teal hover:text-navy transition-colors group"
+                                    className="inline-flex items-center gap-2 text-lg text-sea hover:text-ink transition-colors group"
                                   >
                                     <span>{link.label}</span>
                                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -360,81 +320,44 @@ export default function App() {
       </AnimatePresence>
 
       {/* Side Quests Section */}
-      <section id="side-quests" className="py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-sm uppercase tracking-wider text-teal mb-8">Side Quests</h2>
-          <p className="text-xl text-navy/80 leading-relaxed mb-12 max-w-2xl">
+      <section id="side-quests" className="py-32 px-6 border-t border-line">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle n="04" title="Side Quests" />
+          <p className="text-xl md:text-2xl text-ink-soft leading-relaxed mb-12 max-w-3xl">
             When I’m not working toward my bigger goals, I spend time exploring smaller curiosities. This is where boundaries blur, ideas stay open-ended, and I give myself room to experiment. I think of these as the side quests in the game of life.
           </p>
           
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="relative overflow-hidden rounded-lg bg-gradient-to-br from-aqua/60 to-sand p-12 cursor-pointer group"
+            className="relative overflow-hidden rounded-xl border border-line bg-surface p-12 cursor-pointer group hover:border-sea/60 transition-colors"
           >
             <div className="relative z-10">
-              <h3 className="mb-3">Find my Sidequests here.</h3>
-              <p className="text-navy/70 mb-6">
+              <h3 className="mb-3 font-display text-3xl text-ink">Find my Sidequests here.</h3>
+              <p className="text-lg text-ink-soft mb-6">
                 Adventure, Art, Music, Musings, Ideas and Explorations.
               </p>
               <a href="https://swathisarav.github.io/sidequests/" target="_blank" rel="noopener noreferrer">
-                <div className="inline-flex items-center gap-2 text-teal group-hover:gap-3 transition-all">
+                <div className="inline-flex items-center gap-2 text-lg text-sea group-hover:gap-3 transition-all">
                   <span>View collection</span>
                   <ArrowUpRight className="w-5 h-5" />
                 </div>
               </a>
             </div>
             
-            {/* Decorative geometric element */}
-            <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
-              <svg viewBox="0 0 200 200" className="w-full h-full">
-                <motion.circle
-                  cx="100"
-                  cy="100"
-                  r="80"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
-                />
-                
-                <motion.line
-                  x1="20"
-                  y1="100"
-                  x2="180"
-                  y2="100"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  transition={{ duration: 2, delay: 0.3 }}
-                />
-                <motion.line
-                  x1="100"
-                  y1="20"
-                  x2="100"
-                  y2="180"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  transition={{ duration: 2, delay: 0.6 }}
-                />
-              </svg>
-            </div>
+            {/* The Sidequests wave, a quiet link between the two sites */}
+            <WaveMark className="pointer-events-none absolute -right-6 -bottom-4 w-80 h-auto text-sea opacity-20 transition-opacity duration-500 group-hover:opacity-40" />
           </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 bg-aqua/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-sm uppercase tracking-wider text-teal mb-12">Get in Touch</h2>
+      <section id="contact" className="py-32 px-6 bg-paper-2 border-t border-line">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle n="05" title="Get in Touch" />
           <div className="space-y-6">
             <a
               href="mailto:swathisarav@alumni.iitm.ac.in"
-              className="flex items-center gap-4 text-xl hover:text-teal transition-colors group"
+              className="flex items-center gap-4 text-2xl text-ink hover:text-sea transition-colors group"
             >
               <Mail className="w-6 h-6" />
               <span>swathisarav@alumni.iitm.ac.in</span>
@@ -444,7 +367,7 @@ export default function App() {
               href="https://www.linkedin.com/in/swathi-saravanan-21b3a1233/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 text-xl hover:text-teal transition-colors group"
+              className="flex items-center gap-4 text-2xl text-ink hover:text-sea transition-colors group"
             >
               <Linkedin className="w-6 h-6" />
               <span>LinkedIn</span>
@@ -454,7 +377,7 @@ export default function App() {
               href="https://github.com/swathisarav"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 text-xl hover:text-teal transition-colors group"
+              className="flex items-center gap-4 text-2xl text-ink hover:text-sea transition-colors group"
             >
               <Github className="w-6 h-6" />
               <span>GitHub</span>
@@ -465,8 +388,8 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-navy/10">
-        <div className="max-w-6xl mx-auto text-center text-teal text-sm">
+      <footer className="py-12 px-6 border-t border-line">
+        <div className="max-w-6xl mx-auto text-center text-ink-faint text-base">
           © 2026 Swathi Saravanan. All rights reserved.
         </div>
       </footer>
