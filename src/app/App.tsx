@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { X, ArrowUpRight, Github, Linkedin, Mail, Lock } from 'lucide-react';
+import { Gate } from './components/Gate';
 import clearsyncImg from "./assets/clearsync.png";
 import diefordiceImg from "./assets/diefordice.png";
 import thickmorphImg from "./assets/ThickMorph.png";
@@ -75,6 +76,20 @@ const projects: Project[] = [
 export default function App() {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState('');
+  const [unlocked, setUnlocked] = useState(
+    () => sessionStorage.getItem('portfolio-unlocked') === '1'
+  );
+
+  const unlock = () => {
+    sessionStorage.setItem('portfolio-unlocked', '1');
+    setUnlocked(true);
+    window.scrollTo({ top: 0 });
+  };
+
+  const relock = () => {
+    sessionStorage.removeItem('portfolio-unlocked');
+    setUnlocked(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,6 +129,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
+      <AnimatePresence>{!unlocked && <Gate onUnlock={unlock} />}</AnimatePresence>
+
       {/* Sticky Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-4">
@@ -136,6 +153,14 @@ export default function App() {
                   {section === 'side-quests' ? 'Side Quests' : section}
                 </button>
               ))}
+              <button
+                onClick={relock}
+                title="Lock the site again"
+                aria-label="Lock the site again"
+                className="text-gray-400 hover:text-blue-600 transition-colors"
+              >
+                <Lock className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
