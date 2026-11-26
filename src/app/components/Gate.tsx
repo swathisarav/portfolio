@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { motion } from 'motion/react';
+import { useIsMobile } from './ui/use-mobile';
 
 /**
  * Landing gate, seen from above: deep water fading to teal, ribbons of
@@ -17,11 +18,11 @@ const C = {
   inkSoft: '#A9ADA7',
   sea: '#1F7F82',
   seaBright: '#3FA9AA',
-  foam: '#F2F6F4',
+  foam: '#E9EDE8',
   paper: '#F4F5F2', // the main page background, so the wave hands off seamlessly
-  sand: '#C99A5C',
-  sandLight: '#D8AC6C',
-  sandWet: '#A47A45',
+  sand: '#CDC6B6',
+  sandLight: '#DBD5C7',
+  sandWet: '#ADA593',
   coral: '#C48E74',
   shell: '#EAD9CC',
   gold: '#A58D66',
@@ -47,7 +48,7 @@ function horizontalPath(f: (x: number) => number, step = 12) {
 }
 
 const BOAT_X = 0.82;
-const BOAT_Y = 0.5;
+const BOAT_Y = 0.4;
 const WATER_FRACTION = (SHORE_Y - 40) / VH;
 
 function seeded(seed: number) {
@@ -66,8 +67,7 @@ function seeded(seed: number) {
 type RibbonSpec = { y: number; amp: number; seed: number; strands: number; dur: number; opacity: number };
 
 const RIBBONS: RibbonSpec[] = [
-  { y: 0.065, amp: 26, seed: 3, strands: 4, dur: 11, opacity: 0.7 },
-  { y: 0.72, amp: 22, seed: 17, strands: 5, dur: 9, opacity: 1 },
+  { y: 0.72, amp: 22, seed: 17, strands: 3, dur: 9, opacity: 0.75 },
 ];
 
 function Ribbon({ spec }: { spec: RibbonSpec }) {
@@ -131,7 +131,7 @@ function Seascape() {
   // little rings of lace in the shore foam
   const lace = useMemo(() => {
     const rand = seeded(5);
-    return Array.from({ length: 26 }, () => {
+    return Array.from({ length: 8 }, () => {
       const x = rand() * VW;
       return { x, y: shoreY(x, -14 - rand() * 22), rx: 5 + rand() * 12, ry: 3 + rand() * 6 };
     });
@@ -140,10 +140,10 @@ function Seascape() {
     <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox={`0 0 ${VW} ${VH}`} preserveAspectRatio="none" aria-hidden>
       <defs>
         <linearGradient id="sea" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#030B0E" />
-          <stop offset="0.35" stopColor="#0A2730" />
-          <stop offset="0.62" stopColor="#14505A" />
-          <stop offset="0.78" stopColor="#2B7C80" />
+          <stop offset="0" stopColor="#04090A" />
+          <stop offset="0.35" stopColor="#0B1C1F" />
+          <stop offset="0.62" stopColor="#123537" />
+          <stop offset="0.78" stopColor="#1D5254" />
         </linearGradient>
         <linearGradient id="beach" x1="0" x2="0" y1="0" y2="1">
           <stop offset="0.72" stopColor={C.sand} />
@@ -166,7 +166,7 @@ function Seascape() {
         <path
           d={horizontalPath((x) => shoreY(x, -5))}
           fill="none"
-          stroke="#2B7C80"
+          stroke="#2C6264"
           strokeOpacity={0.7}
           strokeWidth={4}
           strokeLinecap="round"
@@ -452,68 +452,36 @@ function shoreBottom(xPct: number) {
   return 100 - (shoreY((xPct / 100) * VW) / VH) * 100;
 }
 
-type BeachItem = { x: number; b: number | ((x: number) => number); el: ReactNode; rot?: number; z?: number };
+type BeachItem = {
+  x: number;
+  b: number | ((x: number) => number);
+  el: ReactNode;
+  rot?: number;
+  z?: number;
+  /** also shown on phones, where the beach is much narrower */
+  phone?: boolean;
+};
 
 /** Along the wrack line: just above the foam, where the tide leaves things. */
 const tide = (off: number) => (x: number) => shoreBottom(x) - off;
 
-/** Densest at the right end, thinning out towards the left. */
+/** Almost bare sand: just a couple of finds in the right corner. */
 const BEACH_ITEMS: BeachItem[] = [
-  /* --- dense: the right corner --- */
-  { x: 98.2, b: 2.5, el: <DuneGrass size={84} />, z: 2 },
-  { x: 95.2, b: 0.5, el: <DuneGrass size={58} delay={1.2} />, z: 2 },
-  { x: 91.4, b: 0, el: <DuneGrass size={44} delay={2.1} />, z: 2 },
-  { x: 92.8, b: 5.2, el: <BeachPlant size={36} /> },
-  { x: 96.5, b: tide(4.8), el: <Seaweed size={40} />, rot: 6 },
-  { x: 93.8, b: tide(5.6), el: <Seaweed size={28} />, rot: -14 },
-  { x: 91.8, b: tide(4.6), el: <Mussel size={14} />, rot: -30 },
-  { x: 90.6, b: tide(5.4), el: <Cowrie size={15} />, rot: 20 },
-  { x: 88.2, b: 9.5, el: <Scuttle><Crab size={34} /></Scuttle>, rot: 10 },
-  { x: 86.8, b: 3.8, el: <Starfish size={38} color="#C48E74" />, rot: -18 },
-  { x: 83.6, b: 7.2, el: <Scallop size={26} color="#E7D6AE" />, rot: -15 },
-  { x: 82.4, b: 5.2, el: <Clam size={20} color="#ECD5C9" />, rot: 35 },
-  { x: 83.1, b: 9.6, el: <Snail size={17} color="#E4D3DA" /> },
-  { x: 85.4, b: 1.6, el: <Pebble size={18} color="#A7A39A" /> },
-  { x: 84.2, b: 0.6, el: <Pebble size={12} color="#8C8478" /> },
-
-  /* --- medium: a few finds further apart --- */
-  { x: 76.5, b: tide(5), el: <Seaweed size={30} />, rot: -4 },
-  { x: 73.5, b: 4.5, el: <Pebble size={14} color="#9AA3A3" /> },
-  { x: 69, b: 8.5, el: <Starfish size={28} color="#D2AA7C" />, rot: 25 },
-  { x: 62, b: 3, el: <SandDollar size={26} />, rot: -20 },
-  { x: 56, b: tide(5.2), el: <Auger size={18} color="#E2CDB0" />, rot: -60 },
-
-  /* --- sparse: open sand, a lone shell or two --- */
-  { x: 24, b: 9, el: <Clam size={16} color="#D6CEDD" />, rot: -25 },
-  { x: 9, b: 3.5, el: <Scallop size={20} color="#E9CFC4" />, rot: 20 },
+  { x: 86, b: 6.5, el: <Starfish size={34} color="#B59C8F" />, rot: -18, phone: true },
+  { x: 90.5, b: 3.2, el: <Scallop size={24} color="#E7E3D8" />, rot: -15, phone: true },
 ];
 
-function Shells() {
-  // fine sand grains, a little denser near the water
-  const grains = useMemo(() => {
-    const rand = seeded(13);
-    return Array.from({ length: 18 }, () => {
-      const left = rand() * 100;
-      const bottom = Math.pow(rand(), 0.6) * (shoreBottom(left) - 4);
-      return { left, bottom, r: 1 + rand() * 1.6, o: 0.25 + rand() * 0.3 };
-    });
-  }, []);
+function Shells({ compact = false }: { compact?: boolean }) {
   const items = useMemo(
     () =>
-      BEACH_ITEMS.map((it) => ({ ...it, bottom: typeof it.b === 'function' ? it.b(it.x) : it.b }))
+      BEACH_ITEMS.filter((it) => !compact || it.phone)
+        .map((it) => ({ ...it, bottom: typeof it.b === 'function' ? it.b(it.x) : it.b }))
         // things further down the screen are nearer the viewer, so draw them last
         .sort((a, b) => (a.z ?? 0) - (b.z ?? 0) || b.bottom - a.bottom),
-    []
+    [compact]
   );
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {grains.map((g, i) => (
-        <span
-          key={i}
-          className="absolute rounded-full"
-          style={{ left: `${g.left}%`, bottom: `${g.bottom}%`, width: g.r * 2, height: g.r * 2, background: C.sandWet, opacity: g.o }}
-        />
-      ))}
       {items.map((it, i) => (
         <div
           key={i}
@@ -533,14 +501,14 @@ function Shells() {
 
 /** Dark silhouettes, as if glimpsed through the water from above. */
 const FISH_STYLES: { size: number; opacity: number }[] = [
-  { size: 1.15, opacity: 0.6 },
-  { size: 0.9, opacity: 0.5 },
-  { size: 0.8, opacity: 0.55 },
-  { size: 0.85, opacity: 0.45 },
-  { size: 0.7, opacity: 0.5 },
-  { size: 1.3, opacity: 0.6 },
-  { size: 0.95, opacity: 0.5 },
+  { size: 1.9, opacity: 0.55 }, // big
+  { size: 0.55, opacity: 0.5 }, // small fry
+  { size: 1.2, opacity: 0.55 },
   { size: 0.75, opacity: 0.45 },
+  { size: 2.4, opacity: 0.5 }, // the biggest, drifting deep
+  { size: 0.45, opacity: 0.5 },
+  { size: 1.0, opacity: 0.5 },
+  { size: 0.65, opacity: 0.45 },
 ];
 
 const SILHOUETTE = '#02141A';
@@ -563,7 +531,7 @@ function FishShape({ opacity }: { opacity: number }) {
 
 type Fish = { x: number; y: number; a: number; speed: number; turn: number; phase: number };
 
-function School({ avoidRef }: { avoidRef: React.RefObject<HTMLElement | null> }) {
+function School({ avoidRef, count = FISH_STYLES.length }: { avoidRef: React.RefObject<HTMLElement | null>; count?: number }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const fishRefs = useRef<(SVGGElement | null)[]>([]);
   const mouse = useRef({ x: -9999, y: -9999 });
@@ -595,7 +563,7 @@ function School({ avoidRef }: { avoidRef: React.RefObject<HTMLElement | null> })
     window.addEventListener('resize', onResize);
     window.addEventListener('pointermove', onMove);
 
-    const fish: Fish[] = FISH_STYLES.map((_, i) => ({
+    const fish: Fish[] = FISH_STYLES.slice(0, count).map((_, i) => ({
       x: 80 + ((i * 197) % Math.max(200, w - 160)),
       y: 60 + ((i * 131) % Math.max(160, h * WATER_FRACTION - 120)),
       a: Math.random() * Math.PI * 2,
@@ -662,11 +630,11 @@ function School({ avoidRef }: { avoidRef: React.RefObject<HTMLElement | null> })
       window.removeEventListener('resize', onResize);
       window.removeEventListener('pointermove', onMove);
     };
-  }, [avoidRef]);
+  }, [avoidRef, count]);
 
   return (
     <svg ref={svgRef} className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
-      {FISH_STYLES.map((s, i) => (
+      {FISH_STYLES.slice(0, count).map((s, i) => (
         <g
           key={i}
           ref={(el) => {
@@ -685,8 +653,8 @@ function School({ avoidRef }: { avoidRef: React.RefObject<HTMLElement | null> })
 /* Yacht, seen from above, bow on the left.                             */
 /* ------------------------------------------------------------------ */
 
-const WOOD = '#C48F57';
-const WOOD_LINE = '#A97743';
+const WOOD = '#B5A48A';
+const WOOD_LINE = '#9C8C73';
 const GLASS = '#111517';
 
 function BoatShape() {
@@ -714,10 +682,10 @@ function BoatShape() {
         <line key={y} x1={44} y1={y} x2={204} y2={y} stroke={WOOD_LINE} strokeWidth={0.7} opacity={0.7} />
       ))}
       {/* bow fittings */}
-      <path d="M 24,40 L 46,40" stroke="#7E5E3A" strokeWidth={2} strokeLinecap="round" />
+      <path d="M 24,40 L 46,40" stroke="#76684F" strokeWidth={2} strokeLinecap="round" />
       <rect x={48} y={36} width={6} height={8} rx={1.5} fill={GLASS} />
       {/* stern swim platform */}
-      <rect x={206} y={22} width={9} height={36} rx={2} fill="#B07A44" />
+      <rect x={206} y={22} width={9} height={36} rx={2} fill="#A39279" />
       {/* main cabin */}
       <path
         d="M 62,40 C 72,26 92,21 122,21 L 186,21 Q 196,21 196,31 L 196,49 Q 196,59 186,59 L 122,59 C 92,59 72,54 62,40 Z"
@@ -733,81 +701,6 @@ function BoatShape() {
       <rect x={130} y={28} width={32} height={24} rx={5} fill="#F2F3F1" stroke="#D5DBDB" strokeWidth={1} />
       <rect x={136} y={33} width={7} height={14} rx={2} fill={GLASS} />
       <circle cx={153} cy={40} r={3} fill="#D5DBDB" />
-    </svg>
-  );
-}
-
-/** Wobbly closed loop around the boat, drawn like the ocean's foam strands. */
-function foamLoop(rx: number, ry: number, seed: number, amp: number) {
-  let d = '';
-  for (let i = 0; i <= 72; i++) {
-    const a = (i / 72) * Math.PI * 2;
-    const wob = Math.sin(a * 3 + seed) * amp + Math.sin(a * 7 + seed * 2.3) * amp * 0.45;
-    // a little extra room at the pointed bow (left side)
-    const bow = Math.cos(a) < 0 ? Math.pow(-Math.cos(a), 6) * 10 : 0;
-    const x = Math.cos(a) * (rx + wob + bow);
-    const y = Math.sin(a) * (ry + wob * 0.6);
-    d += `${d ? ' L' : 'M'} ${x.toFixed(1)},${y.toFixed(1)}`;
-  }
-  return d + ' Z';
-}
-
-/** Water moving around the boat, in the same style as the foam ribbons. */
-function BoatRipples() {
-  const { band, strands, outer, bubbles } = useMemo(() => {
-    const rand = seeded(41);
-    return {
-      // uneven ribbon of foam right at the hull (two loops, filled between them)
-      band: `${foamLoop(114, 40, 0.7, 3)} ${foamLoop(121, 46, 2.9, 4)}`,
-      strands: [foamLoop(130, 52, 1.6, 5), foamLoop(140, 58, 4.2, 6)],
-      outer: foamLoop(146, 62, 5.1, 6),
-      bubbles: Array.from({ length: 8 }, () => {
-        const a = rand() * Math.PI * 2;
-        const k = 1.05 + rand() * 0.2;
-        return { x: Math.cos(a) * 130 * k, y: Math.sin(a) * 52 * k, r: 1.5 + rand() * 2.5 };
-      }),
-    };
-  }, []);
-  return (
-    <svg
-      className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible"
-      width="360"
-      height="180"
-      viewBox="-180 -90 360 180"
-      aria-hidden
-    >
-      <motion.path
-        d={band}
-        fill={C.foam}
-        fillRule="evenodd"
-        animate={{ opacity: [0.75, 0.55, 0.75], scale: [1, 1.015, 1] }}
-        transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      {strands.map((d, i) => (
-        <motion.path
-          key={i}
-          d={d}
-          fill="none"
-          stroke={C.foam}
-          strokeWidth={i ? 1 : 1.5}
-          strokeLinecap="round"
-          animate={{ opacity: i ? [0.3, 0.45, 0.3] : [0.5, 0.35, 0.5], scale: [1, 1.03, 1], rotate: [0, i ? -1 : 1, 0] }}
-          transition={{ duration: 4 + i * 1.3, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      ))}
-      {/* one soft strand drifting outward and fading */}
-      <motion.path
-        d={outer}
-        fill="none"
-        stroke={C.foam}
-        strokeWidth={1}
-        initial={{ scale: 1, opacity: 0 }}
-        animate={{ scale: [1, 1.22], opacity: [0.35, 0] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeOut' }}
-      />
-      {bubbles.map((b, i) => (
-        <circle key={i} cx={b.x} cy={b.y} r={b.r} fill="none" stroke={C.foam} strokeOpacity={0.55} strokeWidth={1} />
-      ))}
     </svg>
   );
 }
@@ -843,7 +736,7 @@ function ChasingWave() {
         {/* a band of foam, then the page colour */}
         <path d={`${edge} L 121,${VH + 20} L 121,-20 Z`} fill={C.foam} />
         <path d={edge} fill="none" stroke="white" strokeWidth={8} strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-        <path d={edge} transform="translate(14 0)" fill="none" stroke="#2B7C80" strokeOpacity={0.5} strokeWidth={4} strokeLinecap="round" strokeDasharray="0.1 14 0.1 22" vectorEffect="non-scaling-stroke" />
+        <path d={edge} transform="translate(14 0)" fill="none" stroke="#2C6264" strokeOpacity={0.5} strokeWidth={4} strokeLinecap="round" strokeDasharray="0.1 14 0.1 22" vectorEffect="non-scaling-stroke" />
         <path d={`M 96,-20 L 121,-20 L 121,${VH + 20} L 96,${VH + 20} Z`} fill={C.paper} />
       </svg>
       <div className="absolute inset-y-0 left-[119px] right-0" style={{ background: C.paper }} />
@@ -856,6 +749,7 @@ function ChasingWave() {
 export function Gate({ onUnlock }: { onUnlock: () => void }) {
   const [sailing, setSailing] = useState(false);
   const textRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const prev = document.body.style.overflow;
@@ -890,48 +784,41 @@ export function Gate({ onUnlock }: { onUnlock: () => void }) {
   return (
     <motion.div key="gate" exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="fixed inset-0 z-[60] overflow-hidden" style={{ color: C.ink }}>
       <Seascape />
-      <Shells />
-      <School avoidRef={textRef} />
+      <Shells compact={isMobile} />
+      <School avoidRef={textRef} count={isMobile ? 4 : 7} />
 
-      {/* Name + one-liner, in the same type style as the main page */}
-      {/* centred in the open water, between the top foam and the shore foam */}
-      <div className="relative flex items-center px-6" style={{ height: `${(SHORE_Y / VH - 0.12) * 100}%`, marginTop: '3vh' }}>
+      {/* Name on two lines, with the label beneath spanning its width */}
+      {/* centred in the open water above the shore (on phones, a little higher, leaving room for the boat) */}
+      <div className="absolute inset-x-0 top-0 bottom-[40%] md:bottom-[30%] flex items-center px-6">
         <div className="mx-auto w-full max-w-6xl">
         <div ref={textRef} className="w-fit max-w-full">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mb-6 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]"
-            style={{ color: C.seaBright }}
-          >
-            <span className="h-px w-10" style={{ background: C.seaBright }} />
-            The portfolio of
-          </motion.p>
           <h1
-            className="mb-8 font-display text-6xl md:text-8xl font-bold uppercase leading-[0.95] tracking-tight"
+            className="font-display text-5xl sm:text-6xl md:text-8xl font-bold uppercase leading-[0.95] tracking-tight"
             aria-label={`${NAME_FIRST} ${NAME_LAST}`}
           >
-            {letters(NAME_FIRST, 0)}
-            {' '}
-            {letters(NAME_LAST, NAME_FIRST.length, C.seaBright)}
+            <span className="block whitespace-nowrap">{letters(NAME_FIRST, 0)}</span>
+            <span className="block whitespace-nowrap">{letters(NAME_LAST, NAME_FIRST.length, C.seaBright)}</span>
           </h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="max-w-3xl text-2xl md:text-[1.75rem] leading-relaxed"
-            style={{ color: C.inkSoft }}
+            transition={{ delay: 0.8 }}
+            className="mt-6 flex w-full items-center gap-4 text-sm font-semibold uppercase tracking-[0.2em]"
+            style={{ color: C.seaBright }}
           >
-            I love creating things, and I love it even more when they’re useful to people. I’m
-            currently a graduate student at the University of Pennsylvania.
+            <span className="h-px flex-1" style={{ background: C.seaBright }} />
+            Portfolio website
+            <span className="h-px flex-1" style={{ background: C.seaBright }} />
           </motion.p>
         </div>
         </div>
       </div>
 
       {/* Boat out in the water on the right, bow pointing along the coast */}
-      <div className="absolute z-30 -translate-x-1/2 -translate-y-1/2" style={{ left: `${BOAT_X * 100}%`, top: `${BOAT_Y * 100}%` }}>
+      <div
+        className="absolute z-30 -translate-x-1/2 -translate-y-1/2"
+        style={isMobile ? { left: '50%', top: '63%', scale: 0.8 } : { left: `${BOAT_X * 100}%`, top: `${BOAT_Y * 100}%` }}
+      >
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: sailing ? 0 : 1 }}
@@ -950,9 +837,8 @@ export function Gate({ onUnlock }: { onUnlock: () => void }) {
           whileHover={sailing ? undefined : { scale: 1.06 }}
           whileTap={{ scale: 0.96 }}
         >
-          {/* boat (bow on the left) with ripples around it */}
+          {/* boat (bow on the left) */}
           <div className="absolute inset-0">
-            <BoatRipples />
             <BoatShape />
           </div>
         </motion.button>
