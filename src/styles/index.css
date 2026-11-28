@@ -1,3 +1,30 @@
-@import './fonts.css';
+/* Fonts are linked from index.html, so they start downloading alongside the app. */
 @import './tailwind.css';
 @import './theme.css';
+
+/*
+ * Landing gate: the looping water motion. Plain CSS animations on transforms,
+ * so the compositor runs them without touching the main thread.
+ */
+@keyframes gate-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0.694%, -2.222%, 0); } /* 10 x -20 units of the 1440 x 900 scene */
+}
+@keyframes gate-wash {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-0.694%, 0, 0); }
+}
+@keyframes gate-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+.gate-drift { animation: gate-drift 9s ease-in-out infinite; will-change: transform; }
+.gate-wash { animation: gate-wash 5.5s ease-in-out infinite; will-change: transform; }
+.gate-bob { animation: gate-bob 1.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gate-drift, .gate-wash, .gate-bob { animation: none; }
+}
+
+/* The wave handles pulls past the ends of the page; keep the browser's own bounce and pull-to-refresh out of it. */
+html, body { overscroll-behavior-y: none; }

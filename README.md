@@ -1,11 +1,25 @@
+# Swathi Saravanan — portfolio
 
-  # Personal Portfolio Website Design
+Personal portfolio site: a beach landing page you leave by pulling up a wave,
+and the main page.
 
-  This is a code bundle for Personal Portfolio Website Design. The original project is available at https://www.figma.com/design/xbiAHz66NiQK2MhseelPAW/Personal-Portfolio-Website-Design.
+## Running it
 
-  ## Running the code
+```sh
+npm install
+npm run dev        # local dev server
+npm run typecheck  # TypeScript only
+npm run build      # type-check, then build into docs/
+```
 
-  Run `npm i` to install the dependencies.
+## Deploying
 
-  Run `npm run dev` to start the development server.
-  
+GitHub Pages serves the `docs/` folder of `main` at `/portfolio/`.
+Run `npm run build` and commit the updated `docs/` folder.
+
+## Where things are
+
+- `src/app/App.tsx` — the main page (nav, about, projects, contact).
+- `src/app/components/Gate.tsx` — the beach landing scene.
+- `src/app/components/WaveTransition.tsx` — the pull-up wave that moves between
+  the beach and the site, in both directions.
